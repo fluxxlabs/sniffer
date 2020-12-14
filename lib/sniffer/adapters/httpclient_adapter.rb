@@ -29,8 +29,10 @@ module Sniffer
 
         retryable_response = nil
 
-        bm = Benchmark.realtime do
-          do_get_block_without_sniffer(req, proxy, conn, &block)
+        begin
+          bm = Benchmark.realtime do
+            do_get_block_without_sniffer(req, proxy, conn, &block)
+          end
         rescue HTTPClient::RetryableResponse => e
           retryable_response = e
         end
