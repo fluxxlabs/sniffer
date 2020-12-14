@@ -8,7 +8,7 @@ module Sniffer
   # Sniffer data item stores a request info
   class DataItem
     include ActiveAttr::MassAssignment
-    attr_accessor :request, :response
+    attr_accessor :request, :response, :custom_data
 
     def to_h
       {
@@ -27,14 +27,16 @@ request&.to_h,
 # rubocop:enable
 # Stores http response data
 
-response&.to_h
+response&.to_h,
+
+custom_data: custom_data.try(:to_h)
       }
     end
 
     def to_log
       return {} unless Sniffer.config.logger
 
-      request.to_log.merge(response.to_log)
+      request.to_log.merge(response.to_log).merge(custom_data)
     end
 
     def to_json(*_args)
