@@ -19,8 +19,8 @@ Gem::Specification.new do |spec|
   end
   spec.require_paths = ["lib"]
 
-  spec.add_dependency ">= anyway_config", ">= 1.0"
-  spec.add_dependency ">= active_attr", ">= 0.10.2"
+  spec.add_dependency "anyway_config", "1.0"
+  spec.add_dependency "active_attr", "0.10.2"
 
   spec.add_development_dependency "bundler", "~> 2"
   spec.add_development_dependency "rake", ">= 12.3.3"
